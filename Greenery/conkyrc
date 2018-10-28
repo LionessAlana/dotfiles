@@ -1,0 +1,98 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+
+conky.config = {
+    alignment = 'top_right',
+    double_buffer = true,
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+	default_color = 'grey',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'Inconsolata:size=9',
+    gap_x = 20,
+    gap_y = 65,
+    minimum_height = 5,
+	minimum_width = 4,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+	own_window_transparent = false,
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+	own_window_color = '#000000',
+    own_window_class = 'Conky',
+	own_window_type = 'normal',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false,
+    color1 = 'darkgrey',
+    color2 = 'grey',
+    color3 = '88B04B',
+    color4 = 'd1b217',
+    color5 = 'd15517',
+}
+
+conky.text = [[
+$alignr${color3}${font Inconsolata:size=30}${time %H:%M}$font
+$alignr${color1}${font Inconsolata:size=17}${time %A %d, %b %Y}$font
+
+
+$alignr${color3}S Y S T E M
+#${color 333}${hr}
+${font 'Liberation Sans'}${voffset -34}___________________${voffset 25}$font
+${color1}OS:$color$alignr Manjaro Illyria
+${color1}Kernel:$color$alignr $kernel
+${color1}Uptime:$color$alignr $uptime_short
+
+
+$alignr${color3}C P U
+#${color 333}$hr
+${font 'Liberation Sans'}${voffset -34}_______________________${voffset 25}$font
+${color1}CPU:$color$alignr Intel Core i7-4900MQ
+${color1}Temp:$color$alignr ${if_match $acpitemp < 70} ${color3}$acpitemp°C$endif${if_match $acpitemp >= 70} ${if_match $acpitemp > 80} ${color5}$acpitemp°C $else${color4}$acpitemp°C$endif$endif
+${color1}Load:$color$alignr$cpu%
+${color 333}${cpugraph 50, 320 88B04B d15517 -t -l}
+${color1}Processes:$color $processes  $alignr${color1}Running:$color $running_processes
+
+$alignr${color3}R A M
+#${color 333}$hr
+${font 'Liberation Sans'}${voffset -34}_______________________${voffset 25}$font
+${color1}Usage:$color$alignr $mem/$memmax
+${color 666}${membar 6,260} ${color}$alignr $memperc%
+
+
+$alignr${color3}D I S K
+#${color 333}$hr
+${font 'Liberation Sans'}${voffset -34}_____________________${voffset 25}$font
+$color$alignr root
+$color${fs_used /}/${fs_size /} ${color 666}${fs_bar 6 /}
+
+$color$alignr /home
+$color${fs_used /home}/${fs_size /home} ${color 666}${fs_bar 6 /home}
+
+$color$alignr /Media
+$color${fs_used /home/alana/Media}/${fs_size /home/alana/Media} ${color 666}${fs_bar 6 /home/alana/Media}
+
+
+$alignr${color3}N E T W O R K
+#${color 333}$hr
+${font 'Liberation Sans'}${voffset -34}_________________${voffset 25}$font
+${if_up wlp10s0}${color1}Down:$color ${downspeedf wlp10s0} Kb/s ${color1}$alignr Up: $color${upspeedf wlp10s0} Kb/s
+${color 333}${downspeedgraph wlp10s0 50, 320 88B04B d15517 -t -l}
+${color1}Total Down: $color${totaldown wlp10s0} ${color1}$alignr Total Up: $color${totalup wlp10s0}
+${endif}
+
+]]
