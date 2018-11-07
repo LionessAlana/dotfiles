@@ -1,0 +1,107 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+
+conky.config = {
+    alignment = 'top_right',
+    double_buffer = true,
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+	default_color = '41374e',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'Inconsolata:size=9',
+    gap_x = 20,
+    gap_y = 40,
+    minimum_height = 5,
+	minimum_width = 4,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+	own_window_transparent = false,
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+	own_window_color = '#000000',
+    own_window_class = 'Conky',
+	own_window_type = 'normal',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false,
+    color1 = '604e7b',
+    color2 = '41374e',
+    color3 = 'ba8cff',
+    color4 = 'd1b217',
+    color5 = 'd15517',
+}
+
+conky.text = [[
+
+$alignr${color1}${font Inconsolata:size=30}${time %H:%M}$font
+$alignr${color2}${font Inconsolata:size=17}${time %A %d, %b %Y}$font
+${if_running spotify}
+${image ~/Pictures/Icons/spotify_icon.png -p 285,135 -s 40x40}${font Inconsolata:size=9}
+${if_match 30 > ${exec ~/.conky/artist_length.sh}}$alignr${offset -59}${exec ~/.conky/spoclo/scripts/artist.sh}${else}$alignr${offset -59}${scroll 30 1 ${exec ~/.conky/spoclo/scripts/artist.sh}}${endif}
+${if_match 30 > ${exec ~/.conky/title_length.sh}}$alignr${offset -60}${exec ~/.conky/spoclo/scripts/title.sh}${else}$alignr${offset -60}${scroll 30 1 ${exec ~/.conky/spoclo/scripts/title.sh}}${endif}
+${else}
+
+
+
+${endif}
+
+$alignr${color1}S Y S T E M
+#${color1}${hr}
+${font 'Liberation Sans'}${voffset -34}___________________${voffset 25}$font
+${color2}OS:$color$alignr Manjaro Illyria
+${color2}Kernel:$color$alignr $kernel
+${color2}Uptime:$color$alignr $uptime_short
+
+
+$alignr${color1}C P U
+#${color1}$hr
+${font 'Liberation Sans'}${voffset -34}_______________________${voffset 25}$font
+${color2}CPU:$color$alignr Intel Core i7-4900MQ
+${color2}Temp:$color$alignr ${if_match $acpitemp < 70} ${color}$acpitemp°C$endif${if_match $acpitemp >= 70} ${if_match $acpitemp > 80} ${color5}$acpitemp°C $else${color4}$acpitemp°C$endif$endif
+${color2}Load:$color$alignr$cpu%
+${color2}${cpugraph 50, 320 41374e d15517 -t -l}
+${color2}Processes:$color $processes  $alignr${color2}Running:${color1} $running_processes
+
+$alignr${color1}R A M
+#${color2}$hr
+${font 'Liberation Sans'}${voffset -34}_______________________${voffset 25}$font
+${color2}Usage:$color$alignr $mem/$memmax
+${color1}${membar 6,260} ${color}$alignr $memperc%
+
+
+$alignr${color1}D I S K
+#${color2}$hr
+${font 'Liberation Sans'}${voffset -34}_____________________${voffset 25}$font
+$color$alignr root
+$color${fs_used /}/${fs_size /} ${color1}${fs_bar 6 /}
+
+$color$alignr /home
+$color${fs_used /home}/${fs_size /home} ${color1}${fs_bar 6 /home}
+
+$color$alignr /Media
+$color${fs_used /home/alana/Media}/${fs_size /home/alana/Media} ${color1}${fs_bar 6 /home/alana/Media}
+
+
+$alignr${color1}N E T W O R K
+#${color2}$hr
+${font 'Liberation Sans'}${voffset -34}_________________${voffset 25}$font
+${if_up wlp10s0}${color2}Down:$color ${downspeedf wlp10s0} kb/s ${color2}$alignr Up: $color${upspeedf wlp10s0} kb/s
+${color1}${downspeedgraph wlp10s0 50, 320 41374e d15517 -t -l}
+${color2}Total Down: $color${totaldown wlp10s0} ${color2}$alignr Total Up: $color${totalup wlp10s0}
+${endif}
+
+]]
