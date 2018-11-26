@@ -5,7 +5,7 @@
  *******************************************************************************/
 
 * {
-    selected-normal-foreground:  rgba ( 251, 251, 251, 100 % );
+    selected-normal-foreground:  rgba (  17,  17,  17, 100 % );
     foreground:                  rgba ( 50, 112, 75, 100 % );
     normal-foreground:           @foreground;
     alternate-normal-background: @normal-background;
@@ -19,12 +19,12 @@
     selected-active-foreground:  rgba ( 194, 202, 208, 100 % );
     alternate-active-background: rgba ( 245, 245, 245, 100 % );
     background:                  rgba (  17,  17,  17, 100 % );
-    bordercolor:                 rgba ( 245, 245, 245, 100 % );
+    bordercolor:                 rgba ( 195, 193, 61, 100 % );
     alternate-normal-foreground: @foreground;
     normal-background:           rgba ( 255, 255, 255, 0 % );
     lightfg:                     rgba ( 88, 104, 117, 100 % );
     selected-normal-background:  rgba ( 195, 193,  61, 80 % );
-    border-color:                none;
+    border-color:                rgba ( 195, 193,  61, 100 % );
     spacing:                     2;
     separatorcolor:              none;
     urgent-background:           rgba ( 255, 255, 255, 100 % );
@@ -39,7 +39,7 @@
 }
 #window {
     background-color: @background;
-    border:           0;
+    border:           2;
     padding:          20;
 	width:			30%;
 }
@@ -48,7 +48,7 @@
     padding: 10;
 }
 #message {
-    border:       2px 0px 0px ;
+    border:       0px 0px 0px ;
     border-color: @separatorcolor;
     padding:      1px ;
 }
@@ -57,7 +57,7 @@
 }
 #listview {
     fixed-height: 0;
-    border:       2px 0px 0px ;
+    border:       0px 0px 0px ;
     border-color: @separatorcolor;
     spacing:      2px ;
     scrollbar:    true;
@@ -65,7 +65,7 @@
 }
 #element {
     border:  0;
-    padding: 10px ;
+    padding: 15px 15px ;
 }
 #element.normal.normal {
     background-color: @normal-background;
@@ -106,11 +106,11 @@
 #scrollbar {
     width:        0 ;
     border:       0;
-    handle-width: 8px ;
+    handle-width: 0px ;
     padding:      0;
 }
 #sidebar {
-    border:       2px 0px 0px ;
+    border:       0px 0px 0px ;
     border-color: @separatorcolor;
 }
 #button.selected {
@@ -120,7 +120,10 @@
 #inputbar {
     spacing:    0;
     text-color: @normal-foreground;
-    padding:    1px ;
+    padding:    10px 20px 20px;
+	margin: 0px 0px 15px;
+	border: 0px 0px 2px;
+	border-color: @selected-normal-background;
 }
 #case-indicator {
     spacing:    0;
@@ -134,7 +137,7 @@
     spacing:    0;
     text-color: @normal-foreground;
 	font: "Inconsolata Bold 15";
-	margin: -3px 0 0 0;
+	margin: -2px 0 0 0;
 }
 #inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];

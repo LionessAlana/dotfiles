@@ -91,7 +91,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec i3exit logout
+bindsym $mod+Shift+e exec i3-msg exit
 
 ## MODES ##
 # resize window (you can also use the mouse for that)
@@ -151,6 +151,8 @@ for_window [class="Screenkey"] floating enable
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/firewatch.jpg
 
 # If using only i3
+exec nmcli dev wifi connect The\ Subspace\ Network password thegayagenda
+exec xinput set-prop 12 296 1
 exec --no-startup-id systemd-inhibit --what=handle-power-key sleep infinity
 exec --no-startup-id systemd-inhibit --what=handle-lid-switch sleep infinity
 exec --no-startup-id polybar -r left
@@ -161,11 +163,6 @@ exec --no-startup-id compton &
 exec --no-startup-id /bin/ksuperkey -e 'Super_L=Alt_L|F2'
 exec_always --no-startup-id numlockx on
 exec alacritty &
-
-## Plasma Integration
-# Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everythiing)
-# exec --no-startup-id wmctrl -c Plasma
-# for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 ## Avoid tiling popups, dropdown windows from plasma
 # for the first time, manually resize them, i3 will remember the setting for floating windows
@@ -187,16 +184,17 @@ bindsym Print exec spectacle -rb
 bindsym Shift+Print exec spectacle -fb
 bindsym Ctrl+Shift+Print exec spectacle -ab
 bindsym $mod+t exec alacritty
-bindsym Mod1+F2 exec rofi -show combi 
-bindsym $mod+c exec chromium
-bindsym $mod+Shift+f exec dolphin
+bindsym Mod1+F2 exec rofi -show combi -show-icons
+bindsym $mod+c exec qutebrowser
+bindsym $mod+Shift+f exec thunar
 bindsym $mod+Return exec alacritty
+bindsym $mod+y exec st
 
 
 # Volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioRaiseVolume exec pamixer -u -i 5
+bindsym XF86AudioLowerVolume exec pamixer -u -d 5
+bindsym XF86AudioMute exec pamixer -t
 
 ## Gaps
 gaps inner 25

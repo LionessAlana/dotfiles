@@ -5,10 +5,10 @@ rofi.kb-cancel:		Escape,Alt+F1,Alt+F2
 rofi.lines:		5
 rofi.soft:		true
 rofi.sorting-method:	fzf
-rofi.combi-modi:	drun
+rofi.combi-modi:	drun,run
 rofi.combi-hide-mode-prefix:	true
 rofi.display-combi:	Search
-rofi.bw:		0
+rofi.bw:		2
 rofi.padding:		0
 rofi.fixed-num-lines:	false
 rofi.theme:		succulent.rasi
