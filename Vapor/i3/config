@@ -1,0 +1,200 @@
+# Get Xresources vars
+set_from_resource $fg fg #000
+set_from_resource $bg bg #fff
+set_from_resource $accent accent #fff
+set_from_resource $border border $ccc
+
+Set $mod Mod4
+
+font pango:DejaVu Sans Mono 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier Mod1
+
+# Kill apps (gotta have options...)
+bindsym $mod+Shift+q kill
+bindsym Mod1+F4 kill
+bindsym Ctrl+x kill
+bindsym $mod+x exec rofi -show Kill -modi Kill:$HOME/.config/rofi/kill.sh 
+
+# Switch windows with cursor keys ...
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows with Shift+cursor key ...
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Set inactive dim
+bindsym $mod+i exec pkill compton && compton -b --inactive-dim 0.3
+bindsym $mod+Shift+i exec pkill compton && compton -b --inactive-dim 0.0
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+workspace_auto_back_and_forth yes
+bindsym $mod+z workspace back_and_forth
+
+# switch to workspace
+bindsym $mod+Mod2+KP_1 workspace 1
+bindsym $mod+Mod2+KP_2 workspace 2
+bindsym $mod+Mod2+KP_3 workspace 3
+bindsym $mod+Mod2+KP_4 workspace 4
+bindsym $mod+Mod2+KP_5 workspace 5
+bindsym $mod+Mod2+KP_6 workspace 6
+bindsym $mod+Mod2+KP_7 workspace 7
+bindsym $mod+Mod2+KP_8 workspace 8
+bindsym $mod+Mod2+KP_9 workspace 9
+bindsym $mod+Mod2+KP_0 workspace 10
+bindsym $mod+Mod1+Left workspace prev
+bindsym $mod+Mod1+Right workspace next
+
+# move focused container to workspace
+bindsym $mod+Shift+Mod2+KP_End move container to workspace 1
+bindsym $mod+Shift+Mod2+KP_Down move container to workspace 2
+bindsym $mod+Shift+Mod2+KP_Next move container to workspace 3
+bindsym $mod+Shift+Mod2+KP_Left move container to workspace 4
+bindsym $mod+Shift+Mod2+KP_Begin move container to workspace 5
+bindsym $mod+Shift+Mod2+KP_Right move container to workspace 6
+bindsym $mod+Shift+Mod2+KP_Home move container to workspace 7
+bindsym $mod+Shift+Mod2+KP_Up move container to workspace 8
+bindsym $mod+Shift+Mod2+KP_Prior move container to workspace 9
+bindsym $mod+Shift+Mod2+KP_Insert move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec i3-msg exit
+
+## MODES ##
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# logout/poweroff
+bindsym XF86PowerOff exec rofi -show Power -modi Power:$HOME/.config/rofi/power.sh 
+
+# Turn off focus follows mouse
+focus_follows_mouse yes
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# Default colors ...        border   backgr.  text  	indicator
+client.focused             	$accent $accent $accent $accent
+client.focused_inactive     $border  	$border  	$border			$border
+client.unfocused            $border  	$border		$border			$border
+client.urgent               $accent $accent $accent 	$accent
+
+# Specific app settings
+for_window [class="\w*"] border pixel 1
+for_window [class="Google-chrome" window_role="browser"] border none
+for_window [class="Chromium" window_role="browser"] border pixel 1
+for_window [class="Firefox" window_role="browser"] border none
+for_window [class="Scribus" title="Story Editor"] floating enable
+
+# Enable floating mode for pop-up windows
+for_window [window_role="pop-up"] floating enable
+# Enable floating mode for Chrome Notifications
+for_window [window_role="bubble"] floating enable
+for_window [class="Screenkey"] floating enable
+
+# -- Startup programs -- #
+
+# Set the wallpaper
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/vaporwave.jpg
+
+# If using only i3
+exec xinput set-prop 12 296 1
+exec --no-startup-id systemd-inhibit --what=handle-power-key sleep infinity
+exec --no-startup-id systemd-inhibit --what=handle-lid-switch sleep infinity
+exec --no-startup-id polybar -r left
+exec --no-startup-id polybar -r center
+exec --no-startup-id polybar -r right
+exec --no-startup-id dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -nf "$fg" -cf "$fg" -lfr "$accent" -nfr "$accent" -cfr "$accent" &
+exec --no-startup-id compton &
+exec --no-startup-id /bin/ksuperkey -e 'Super_L=Alt_L|F2'
+exec_always --no-startup-id numlockx on
+exec xst &
+
+## Avoid tiling popups, dropdown windows from plasma
+# for the first time, manually resize them, i3 will remember the setting for floating windows
+for_window [class="plasmashell"] floating enable;
+for_window [title="System Settings"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+
+## Keybinds
+# Apps
+bindsym $mod+s exec /home/alana/Documents/scripts/socials.sh &
+bindsym $mod+b exec /home/alana/Documents/scripts/browser.sh &
+bindsym Print exec spectacle -rb
+bindsym Shift+Print exec spectacle -fb
+bindsym Ctrl+Shift+Print exec spectacle -ab
+bindsym Mod1+F2 exec rofi -show combi -show-icons
+bindsym $mod+c exec qutebrowser
+bindsym $mod+Shift+f exec thunar
+bindsym $mod+Return exec alacritty
+bindsym $mod+t exec xst
+bindsym $mod+y exec alacritty
+
+
+# Volume
+bindsym XF86AudioRaiseVolume exec pamixer -u -i 5
+bindsym XF86AudioLowerVolume exec pamixer -u -d 5
+bindsym XF86AudioMute exec pamixer -t
+
+## Gaps
+gaps inner 25
+gaps outer 0
+gaps top 30

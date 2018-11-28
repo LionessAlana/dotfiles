@@ -1,0 +1,40 @@
+! colors
+*fg: #665c54
+*bg: #fbf1c7
+
+*selection_fg: #fbf1c7
+*selection_bg: #665c54
+
+! terminal colors
+
+! black
+*c0: #282828
+*c8: #928374
+
+! red
+*c1: #cc241d
+*c9: #9d0006
+
+! green
+*c2: #ac8450
+*c10: #82653d
+
+! yellow
+*c3: #d79921
+*c11: #b57614
+
+! blue
+*c4: #458588
+*c12: #076678
+
+! magenta
+*c5: #b16286
+*c13: #8f3f71
+
+! aqua
+*c6: #689d6a
+*c14: #427b58
+
+! grey
+*c7: #7c6f64
+*c15: #3c3836

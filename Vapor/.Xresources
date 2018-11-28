@@ -1,0 +1,58 @@
+!------------------xresources
+mode:	night
+bg:		#090611
+fg: 	#962d4c
+accent:	#962d4c
+sec:	#58697b
+
+! Xft
+Xft*antialiasing: true
+Xft*hinting: true
+Xft*hintstyle: hintfull
+
+! st
+st.termname:	st
+st.shell:		/bin/bash
+st.font:		Iosevka Term:style=Medium:pixelsize=16:antialias=true:autohint=true
+st.chscale:		1
+st.cwscale:		1
+st.cursorshape:	3
+st.cursorthickness:	1
+st.mouseScrollLines: 3
+st.borderpx:	50
+
+! special
+st.foreground:   #58697b
+st.background:   #090611
+
+! black
+st.color0:       #58697b
+st.color8:       #58697b
+
+! red
+st.color1:       #3d375c
+st.color9:       #3d375c
+
+! green
+st.color2:       #78224a
+st.color10:      #78224a
+
+! yellow
+st.color3:       #962d4c
+st.color11:      #962d4c
+
+! blue
+st.color4:       #b49052
+st.color12:      #b49052
+
+! magenta
+st.color5:       #574dae
+st.color13:      #574dae
+
+! cyan
+st.color6:       #91368a
+st.color14:      #91368a
+
+! white
+st.color7:       #8098b1
+st.color15:      #8098b1
