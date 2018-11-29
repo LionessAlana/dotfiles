@@ -19,11 +19,11 @@
 [colors]
 background = ${xrdb:bg:#111}
 background-alt = #444
-foreground = ${xrdb:fg:#ddd}
+foreground = ${xrdb:accent:#ddd}
 foreground-alt = #555
 primary = #ffb52a
 secondary = ${xrdb:sec:#f44}
-alert = ${xrdb:accent:#f99}
+alert = ${xrdb:alert:#f99}
 rad = 0
 
 [bar/left]
@@ -138,14 +138,14 @@ padding-left = 3
 padding-right = 3
 
 module-margin-left = 1
-module-margin-right = 1
+module-margin-right = 3
 
 font-0 = "Iosevka Term:style=Regular:pixelsize=12;2"
 font-1 = "TerminessTTF Nerd Font:style=Regular:pixelsize=15;2"
 font-2 = "FontAwesome:pixelsize=12;0"
 
 modules-left = 
-modules-center = date
+modules-center = date time
 modules-right =  
 
 tray-position =
@@ -451,7 +451,7 @@ label-connected =  %signal%% %downspeed:1:10%
 format-disconnected = <label-disconnected>
 format-disconnected-overline = ${self.format-connected-overline}
 label-disconnected =  
-label-disconnected-foreground = ${colors.primary}
+label-disconnected-foreground = ${colors.alert}
 
 ramp-signal-0 =
 ramp-signal-1 =
@@ -462,7 +462,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 5
 
-date =  %d %h %Y  %A
+date =  %d %h %Y    %A
 
 time = %H:%M  
 
@@ -470,7 +470,16 @@ format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
 format-overline =
 
-label = %date%   %time%
+label = %date%    
+
+[module/time]
+type = internal/date
+interval = 5
+
+time = %H:%M  
+
+label = %time%
+label-foreground = ${colors.alert}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -506,45 +515,15 @@ warn-temperature = 65
 format = <label> <ramp>
 format-overline =
 format-warn = <ramp> <label-warn>
-format-warn-overline = ${colors.secondary}
+format-warn-overline = ${colors.alert}
 label =  %temperature-c%  
 label-warn =  %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.alert}
 
 ramp-0 =
 ramp-1 =
 ramp-2 =
 ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-expand-down = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.foreground}
-label-close = 
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = 
-menu-0-0-exec = menu-open-1
-menu-0-1 = 
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = 
-menu-1-0-exec = menu-open-0
-menu-1-1 = 
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = 
-menu-2-0-exec = sudo poweroff
-menu-2-1 = 
-menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
