@@ -27,7 +27,7 @@ alert = ${xrdb:alert:#f99}
 rad = 0
 
 [bar/left]
-monitor = DP-1
+monitor = 
 width = 23%
 height = 35
 offset-x = 1.75%
@@ -56,7 +56,7 @@ font-1 = "TerminessTTF Nerd Font:style=Regular:pixelsize=15;2"
 font-2 = "FontAwesome:pixelsize=12;0"
 
 modules-center =
-modules-left = ewmh filesystem wlan
+modules-left = ewmh filesystem 
 modules-right =  
 
 tray-position = 
@@ -72,10 +72,10 @@ cursor-scroll = ns-resize
 
 
 [bar/right]
-monitor = DP-1
-width = 18%
+monitor = 
+width = 23%
 height = 35
-offset-x = 80.25%
+offset-x = 75.25%
 offset-y = 15
 radius-top = ${colors.rad}
 radius-bottom = ${colors.rad}
@@ -102,7 +102,7 @@ font-2 = "FontAwesome:pixelsize=12;2"
 
 modules-left = 
 modules-center = 
-modules-right = pulseaudio memory cpu temperature 
+modules-right = pulseaudio wlan memory cpu temperature 
 
 tray-position = left
 tray-transparent = false
@@ -116,7 +116,7 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 [bar/center]
-monitor = DP-1
+monitor = 
 width = 20%
 height = 35
 offset-x = 40%
@@ -160,7 +160,7 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 [bar/full]
-monitor = DP-1
+monitor = 
 width = 96.5%
 height = 35
 offset-x = 1.75%
@@ -203,7 +203,7 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 [bar/bottom]
-monitor = DP-1
+monitor = 
 width = 40%
 height = 35
 offset-x = 30%
@@ -335,6 +335,7 @@ interval = 25
 
 mount-0 = /
 mount-1 = /home
+mount-2 = /media
 ;mount-2 = /home/alana/Media
 
 label-mounted =  %mountpoint% %percentage_used%%
@@ -445,7 +446,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-overline =
-label-connected =  %signal%% %downspeed:1:10%
+label-connected =  %downspeed:1:10%
 
 
 format-disconnected = <label-disconnected>
