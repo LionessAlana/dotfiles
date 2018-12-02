@@ -160,7 +160,7 @@ exec --no-startup-id dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -nf "$fg" -cf
 exec --no-startup-id compton &
 exec --no-startup-id /bin/ksuperkey -e 'Super_L=Alt_L|F2'
 exec_always --no-startup-id numlockx on
-exec xst &
+exec alacritty &
 
 ## Avoid tiling popups, dropdown windows from plasma
 # for the first time, manually resize them, i3 will remember the setting for floating windows
@@ -183,10 +183,8 @@ bindsym Shift+Print exec spectacle -fb
 bindsym Ctrl+Shift+Print exec spectacle -ab
 bindsym Mod1+F2 exec rofi -show combi -show-icons
 bindsym $mod+c exec qutebrowser
-bindsym $mod+Shift+f exec thunar
 bindsym $mod+Return exec alacritty
-bindsym $mod+t exec xst
-bindsym $mod+y exec alacritty
+bindsym $mod+t exec alacritty
 
 
 # Volume
@@ -195,6 +193,6 @@ bindsym XF86AudioLowerVolume exec pamixer -u -d 5
 bindsym XF86AudioMute exec pamixer -t
 
 ## Gaps
-gaps inner 25
-gaps outer 0
-gaps top 30
+gaps inner 15
+gaps outer 10
+gaps top 40
