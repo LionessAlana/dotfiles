@@ -1,9 +1,12 @@
 !------------------xresources
 mode:	night
 bg:		#090611
-fg: 	#962d4c
+fg: 	#58697b
+border:	#58679b
 accent:	#962d4c
 sec:	#58697b
+alert:  #b49052
+font: Drift
 
 ! Xft
 Xft*antialiasing: true
@@ -12,8 +15,8 @@ Xft*hintstyle: hintfull
 
 ! st
 st.termname:	st
-st.shell:		/bin/bash
-st.font:		Iosevka Term:style=Medium:pixelsize=16:antialias=true:autohint=true
+st.shell:		/bin/zsh
+st.font:		Drift:style=Regular:pixelsize=18
 st.chscale:		1
 st.cwscale:		1
 st.cursorshape:	3
